@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tierra - Restaurante Peruano</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2e8d5;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            background: #8e735b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #e6b89c;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #e6b89c;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(60%);
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            font-family: 'Georgia', serif;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            z-index: 1;
+            position: relative;
+        }
+
+        .btn {
+            background-color: #e6b89c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #c39c85;
+        }
+
+        /* Contenido general */
+        .content {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #c39c85;
+            font-family: 'Georgia', serif;
+            border-bottom: 2px solid #d2a679;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Menú */
+        .menu-item {
+            margin-bottom: 20px;
+            text-align: left;
+            border: 1px solid #d2a679;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #fff4e6;
+        }
+
+        .menu-img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        form input, form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #8e735b;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #c39c85;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #8e735b;
+            color: white;
+        }
+        .gallery {
+    text-align: center; /* Centra el texto dentro de la galería */
+    margin: 30px auto; /* Margen automático para centrar */
+    max-width: 1200px; /* Máximo ancho de la galería */
+}
+
+.gallery h2 {
+    color: #8e735b;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grilla adaptable */
+    gap: 15px;
+    justify-items: center; /* Centra cada ítem en la grilla */
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden; /* Para recortar las imágenes que excedan */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s; /* Transiciones */
+}
+
+.gallery-item:hover {
+    transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina el espacio debajo de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para la superposición */
+    opacity: 0; /* Comienza invisible */
+    transition: opacity 0.3s; /* Transición suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* Muestra la superposición al pasar el mouse */
+}
+
+.text {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Mi Tierra</h1>
+            <p>Sabores auténticos de Perú</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <video autoplay loop muted playsinline>
+            <source src="platos/Cocina Peruana para el mundo.mp4" type="video/mp4">
+            <!-- Puedes agregar otros formatos de video si es necesario -->
+        </video>
+        <h2>Bienvenidos a Mi Tierra</h2>
+        <p>Descubre los sabores auténticos de la cocina peruana.</p>
+        <a href="#menu" class="btn">Ver Menú</a>
+    </section>
+
+    <section id="sobre-nosotros" class="content">
+        <h2>Sobre Nosotros</h2>
+        <p>En Mi Tierra, te ofrecemos una experiencia gastronómica única que celebra la rica tradición culinaria de Perú. Desde la frescura de nuestros ingredientes hasta la pasión de nuestros chefs, cada plato cuenta una historia.</p>
+    </section>
+
+    <section id="menu" class="content">
+        <h2>Menú</h2>
+        <div class="menu-item">
+            <img src="platos/causa limeña.png" alt="Causa Limeña" class="menu-img">
+            <h3>Causa Limeña</h3>
+            <p>Deliciosa causa hecha con papa amarilla, atún y aguacate.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/CEVICHE CARRETILLERO.png" alt="Ceviche" class="menu-img">
+            <h3>Ceviche</h3>
+            <p>Mariscos frescos marinados en jugo de limón, acompañados de cebolla y ají.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/LOMO.png" alt="Lomo Saltado" class="menu-img">
+            <h3>Lomo Saltado</h3>
+            <p>Carne de res salteada con cebolla, tomate, y papas fritas, servido con arroz.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/malaya.png" alt="Malaya" class="menu-img">
+            <h3>Pachamanca</h3>
+            <p>Carne y vegetales cocidos al vapor en piedras calientes, con hierbas andinas.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/AJI DE G.png" alt="Ají de Gallina" class="menu-img">
+            <h3>Ají de Gallina</h3>
+            <p>Pollo desmenuzado en una cremosa salsa de ají amarillo y nueces, servido con arroz.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/anticucho.png" alt="Anticuchos" class="menu-img">
+            <h3>Anticuchos</h3>
+            <p>Brochetas de corazón de res marinado y asado a la parrilla, servidas con salsa de ají.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/tacu.png" alt="Tacu Tacu" class="menu-img">
+            <h3>Tacu Tacu</h3>
+            <p>Arroz y frijoles fritos, servido con un acompañamiento de carne o pescado.</p>
+        </div>
+        <div class="menu-item">
+            <img src="platos/tallarinv.png" alt="Tallarin verde" class="menu-img">
+            <h3>Tallarin verde</h3>
+            <p> Es un plato de pasta, que se baña de una rica salsa emulando la famosa salsa pesto italiana, y que se adorna con una carne.</p>
+        </div>
+    </section>
+    <section id="galeria" class="gallery content">
+        <h2>Galería de Platos</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="platos/AJI DE G.png" alt="Plato 1">
+                <div class="overlay">
+                    <div class="text">El ají de gallina es un plato típico de la gastronomía peruana, concretamente de la costa,​ que consiste en un ají o crema espesa con pechuga de gallina deshilachada.</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="platos/al horno.png" alt="Plato 2">
+                <div class="overlay">
+                    <div class="text">La pollada es un plato tradicional peruano que consiste en pollo frito, típicamente servido con papas, choclo cocido, ensalada de col y zanahoria, y una variedad de salsas de ají.</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="platos/anticucho.png" alt="Plato 3">
+                <div class="overlay">
+                    <div class="text">El anticucho es un plato típico de la gastronomía peruana que consiste en trozos de carne, tradicionalmente de corazón de vaca, ensartados en un pincho y asados a la parrilla.</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="platos/CEVICHE CARRETILLERO.png" alt="Plato 4">
+                <div class="overlay">
+                    <div class="text">El ceviche es un platillo preparado con pescado crudo marinado en jugo de limón, lo que provoca que el pescado se "cocine" en el ácido del limón.</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="platos/FETU.png" alt="Plato 5">
+            <div class="overlay">
+                <div class="text">El fettuccine es un tipo de pasta larga, caracterizada por su forma plana y ancha, similar al spaghetti pero más grueso. </div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="platos/tacu pobre.png" alt="Plato 6">
+            <div class="overlay">
+                <div class="text">Tacu Tacu “a lo pobre" consiste, simplemente en el entrevero de los restos de arroz y legumbres hervidas, bien condimentado. La receta básica lleva por arriba un huevo frito y es posible de realizar en cualquier parte del mundo.</div>
+            </div>
+        </div>
+    </div>
+</section>
+        
+
+    
+    <section id="reservas" class="content">
+        <h2>Reservas</h2>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required>
+
+            <label for="personas">Número de Personas:</label>
+            <input type="number" id="personas" name="personas" required>
+
+            <button type="submit">Reservar</button>
+        </form>
+    </section>
+    <section class="testimonials content">
+        <h2>Testimonios</h2>
+        <div class="testimonial-item">
+            <p>"La comida de Mi Tierra es simplemente deliciosa. Cada plato tiene un sabor auténtico que me transporta a mis raíces. ¡Definitivamente volveré!"</p>
+            <h3>- María López</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"Una experiencia gastronómica única. El servicio es excepcional y los platos son presentados de manera impecable. ¡Recomendado al 100%!"</p>
+            <h3>- Juan Pérez</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"Me encantó la variedad del menú. Cada bocado es una explosión de sabores. Un lugar que todos deben visitar en su viaje a Perú."</p>
+            <h3>- Ana Torres</h3>
+        </div>
+    </section>
+
+    
+    <section id="contacto" class="content">
+        <h2>Contacto</h2>
+        <p>Puedes contactarnos a través de los siguientes medios:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:katherin.chata@upeu.edu.pe">katherin.chata@upeu.edu.pe</a></li>
+            <li><strong>Teléfono:</strong> <a href="tel:+1234567890">(123) 456-7890</a></li>
+            <li><strong>Instagram:</strong> <a href="https://instagram.com/nayelikatherin" target="_blank">@nayelikatherin</a></li>
+        </ul>
+        <a href="mailto:nayeli.katherin@email.com" class="btn">Envíame un Mensaje</a>
+    </section>
+    
+    <section id="redes-sociales" class="content">
+        <h2>Síguenos en Redes Sociales</h2>
+        <p>Mantente al tanto de nuestras novedades y promociones:</p>
+        <div class="social-icons">
+            <a href="https://instagram.com/nayelikatherin" target="_blank">📸</a>
+            <a href="https://twitter.com/nayelikatherin" target="_blank">🐦</a>
+            <a href="https://facebook.com/nayelikatherin" target="_blank">📘</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Restaurante Mi Tierra. Todos los derechos reservados.</p>
+    </footer>
+
+
+        
